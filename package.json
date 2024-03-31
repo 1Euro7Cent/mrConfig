@@ -1,0 +1,19 @@
+{
+  "name": "mrconfig",
+  "version": "1.0.0",
+  "description": "A config module with type checking and default values. It also provides valid JSdoc for the config object",
+  "main": "Config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1Euro7Cent/mrConfig.git"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/1Euro7Cent/mrConfig/issues"
+  },
+  "homepage": "https://github.com/1Euro7Cent/mrConfig#readme"
+}
