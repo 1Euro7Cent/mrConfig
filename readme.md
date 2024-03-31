@@ -18,11 +18,11 @@ mrConfig can be used to manage configuration data. The class provides methods fo
 ## Installation
 
 ```bash
-npm install mrconfig
+npm install mrconfig.js
 ```
 
 ```javascript
-const Config = require('mrconfig');
+const Config = require('mrconfig.js');
 ```
 
 ## How to Use
@@ -32,7 +32,7 @@ To use this class, you need to create your own class that extends the `Config` c
 Here's an example:
 
 ```javascript
-const Config = require('mrconfig');
+const Config = require('mrconfig.js');
 
 class MyConfig extends Config {
     constructor() {

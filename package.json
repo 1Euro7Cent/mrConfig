@@ -1,5 +1,5 @@
 {
-  "name": "mrconfig",
+  "name": "mrconfig.js",
   "version": "1.0.0",
   "description": "A config module with type checking and default values. It also provides valid JSdoc for the config object",
   "main": "Config.js",
