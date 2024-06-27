@@ -1,6 +1,6 @@
 {
   "name": "mrconfig.js",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A config module with type checking and default values. It also provides valid JSdoc for the config object",
   "main": "Config.js",
   "scripts": {
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/1Euro7Cent/mrConfig/issues"
   },
-  "homepage": "https://github.com/1Euro7Cent/mrConfig#readme"
+  "homepage": "https://github.com/1Euro7Cent/mrConfig#readme",
+  "dependencies": {
+    "json-fixer": "^1.6.15"
+  }
 }

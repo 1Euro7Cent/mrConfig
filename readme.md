@@ -36,7 +36,7 @@ const Config = require('mrconfig.js');
 
 class MyConfig extends Config {
     constructor() {
-        super('myConfig', true, true);
+        super('myConfig', true, true, true);
         this.data = {
             serverName: 'default value',
             port: 123,
@@ -45,8 +45,8 @@ class MyConfig extends Config {
     }
 }
 // the following args are the default ones
-// const myConfig = new MyConfig(name, prettify, allowParseToNumber);
-const myConfig = new MyConfig('config', false, true);
+// const myConfig = new MyConfig(name, prettify, allowParseToNumber,allowJsonFixer);
+const myConfig = new MyConfig('config', false, true, true);
 ```
 
 In this example,  `myConfig` is an instance of `MyConfig`, which extends `Config`. The `this.data` object is populated with default values.
@@ -65,11 +65,13 @@ console.log(myConfig.data.port); // 123. hover over it to see the type 'number'
 
 The `Config` class provides the following methods:
 
-* `fromFile(file)`: Loads the configuration from the given file. If a configuration already exists, it will be overridden with the new configuration.
+* `fromFile(?file)`: Loads the configuration from the given file. If a configuration already exists, it will be overridden with the new configuration.
 
-* `fromJson(json)`: Loads the configuration from a JSON object. If a configuration already exists, it will be overridden with the new configuration.
+* `fromJson(json)`: Loads the configuration from a JSON object or string. If a configuration already exists, it will be overridden with the new configuration.
 
-* `save(file)`: Saves the current config to the given file.
+* `save(?file, ?content)`: Saves the current config to the given file. if content set it will override the current config.
+
+#### Note: The `?` in the method signature indicates that the parameter is optional.
 
 ## Type Checking
 
@@ -196,8 +198,19 @@ console.log(myConfig.data.serverName); // Outputs 'new value'
 myConfig.fromJson(JSON.parse('{"serverName": "new value"}'));
 console.log(myConfig.data.serverName); // Outputs 'new value'
 
+// or this
+myConfig.fromJson('{"serverName": "new value"}');
+console.log(myConfig.data.serverName); // Outputs 'new value'
+
 // you still need to save it to a file
 myConfig.save('path/to/config.json');
+
+// if the data is faulty, and allowJsonFixer is true, it will try to fix it:
+myConfig.fromJson('{"serverName": "new value", "port": "123",}}}')
+// this will parse just fine, and port will be a number.
+
+// if it was loaded from a file, the fixed data will be saved back to the file
+
 ```
 
 In this example, the `fromJson(json)` method overwrites the current state of the `this.data` object with the provided JSON object.
