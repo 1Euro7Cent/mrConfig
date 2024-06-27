@@ -9,13 +9,14 @@ module.exports = class Config {
      * @param {boolean} prettify 
      * @param {boolean} allowParseToNumber 
      */
-    constructor(name = 'config', prettify = false, allowParseToNumber = true, allowJsonFixer = true) {
+    constructor(name = 'config', prettify = false, allowParseToNumber = true, allowJsonFixer = true, ignoreArray = false) {
 
         this.data = {}
         this.name = name
         this.prettify = prettify
         this.allowParseToNumber = allowParseToNumber
         this.allowJsonFixer = allowJsonFixer
+        this.ignoreArray = ignoreArray
 
         this.filePath = name + '.json'
     }
@@ -34,6 +35,10 @@ module.exports = class Config {
      */
     validateObjectTypes(obj1, obj2) {
         for (let key in obj1) {
+            if (this.ignoreArray && Array.isArray(obj1[key])) {
+                console.warn(`${this.name} key ${key} is an array and checking will be ignored`)
+                continue
+            }
             if (typeof obj2[key] != 'undefined') {
                 if (typeof obj1[key] == 'object') {
                     if (!this.validateObjectTypes(obj1[key], obj2[key])) {
